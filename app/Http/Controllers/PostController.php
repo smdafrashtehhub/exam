@@ -78,12 +78,7 @@ class PostController extends Controller
            'body'=>$request->body,
             'updated_at'=>date('Y-m-d H:i:s'),
         ]);
-        $id=[];
-        foreach ($request->category_id as $category_id)
-        {
-            $id[]=$category_id;
-        }
-        $post->categories()->sync($id);
+        $post->categories()->sync($request->category_id);
         return redirect()->route('post.index');
     }
 }
