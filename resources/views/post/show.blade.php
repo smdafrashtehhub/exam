@@ -39,7 +39,7 @@
                         class="font-bold text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all py-20">
                         Code With {{$post->author->name}}
                     </a>
-                    On 17-07-2022
+                    On {{$post->created_at}}
                 </span>
         </div>
     </div>
@@ -48,9 +48,12 @@
         <p class="font-bold text-2xl text-black pt-10">
             {{$post->body}}
         </p>
-
-
     </div>
+    category: <select class="bg-transparent block border-b-2  h-40  text-xl outline-none" name="category_id[]" id="category_id[]" multiple>
+        @foreach($categories as $category)
+            <option value={{$category->id}}>{{$category->name}}</option>
+        @endforeach
+    </select>
 </div>
 </body>
 </html>

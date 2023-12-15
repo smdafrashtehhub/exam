@@ -14,7 +14,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post=Post::find($id);
-        return view('post.show',['post'=>$post]);
+        $categories=$post->categories;
+        return view('post.show',['post'=>$post,'categories'=>$categories]);
     }
     public function create()
     {
@@ -35,7 +36,7 @@ class PostController extends Controller
         foreach ($request->category_id as $category_id)
         {
             $category=Category::find($category_id);
-            $post->categories()->attach($category_id,[
+            $post->categories()->attach($category,[
                 'updated_at'=>date('Y-m-d H:i:s'),
             ]);
         }
@@ -52,23 +53,32 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $post->categories()->detach();
-        $post->update(['status'=>'disable']);
+//        $post->update(['status'=>'disable']);
+        $post->delete();
         return back();
     }
 
     public function edit($id)
     {
         $post=Post::find($id);
-        return view('post.edit',['post'=>$post]);
+        $categories=Category::all();
+        return view('post.edit',['post'=>$post,'categories'=>$categories]);
     }
 
     public function update(PostRequest $request,$id)
     {
-        Post::find($id)->update([
+        $post=Post::find($id);
+        $post->update([
            'title'=>$request->title,
            'body'=>$request->body,
             'updated_at'=>date('Y-m-d H:i:s'),
         ]);
+        $id=[];
+        foreach ($request->category_id as $category_id)
+        {
+            $id[]=$category_id;
+        }
+        $post->categories()->sync($id);
         return redirect()->route('post.index');
     }
 }

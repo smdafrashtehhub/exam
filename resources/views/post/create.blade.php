@@ -35,15 +35,15 @@
             @error('body')
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
+            <BR><BR><BR>
 
-
-            category: <select name="category_id[]" id="category_id[]" multiple>
+            category: <select class="bg-transparent block border-b-2  h-40  text-xl outline-none" name="category_id[]" id="category_id[]" multiple>
                 @foreach($categories as $category)
                     <option value={{$category->id}}>{{$category->name}}</option>
                 @endforeach
             </select>
             <BR><BR><BR>
-            author: <select name="author_id" id="author_id" >
+            author: <select class=" bg-transparent     " name="author_id" id="author_id" >
                 @foreach($authors as $author)
                     <option value={{$author->id}}>{{$author->name}}</option>
                 @endforeach
