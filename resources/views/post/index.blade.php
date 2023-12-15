@@ -71,10 +71,11 @@
 
             <span class="text-gray-500 text-sm sm:text-base">
                     Made by:
-                        <a href=""
-                           class="text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all">
+                        <form action="{{route('post.author',['id'=>$post->author->id])}}" method="get">
+                           <button type="submit" class="text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all">
                             {{$post->author->name}}
-                        </a>
+                           </button>
+                        </form>
                     on {{$post->created_at}}
                 </span>
         </div>

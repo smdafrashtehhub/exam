@@ -7,10 +7,15 @@ use App\Models\Author;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    public function authorposts($id)
+    {
+        $author=Author::find($id);
+        $author_posts=$author->posts;
+        return view('post.author',['author_posts'=>$author_posts]);
+    }
     public function show($id)
     {
         $post=Post::find($id);

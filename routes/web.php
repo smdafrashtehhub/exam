@@ -25,3 +25,4 @@ Route::post('post',[PostController::class,'store'])->name('post.store');
 Route::get('post/{id}/edit',[PostController::class,'edit'])->name('post.edit');
 Route::put('post/{id}',[PostController::class,'update'])->name('post.update');
 Route::delete('post/{id}/delete',[PostController::class,'destroy'])->name('post.destroy');
+Route::get('post/{id}/author',[PostController::class,'authorposts'])->name('post.author');

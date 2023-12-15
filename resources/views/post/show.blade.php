@@ -35,7 +35,7 @@
                 <span class="text-left sm:text-center sm:text-left sm:inline block text-gray-900 pb-10 sm:pt-0 pt-0 sm:pt-10 pl-0 sm:pl-4 -mt-8 sm:-mt-0">
                     Made by:
                     <a
-                        href=""
+                        href="{{route('post.author',['id'=>$post->author->id])}}"
                         class="font-bold text-green-500 italic hover:text-green-400 hover:border-b-2 border-green-400 pb-3 transition-all py-20">
                         Code With {{$post->author->name}}
                     </a>
